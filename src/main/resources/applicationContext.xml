@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans>
+
+	<bean id="userController" class="cn.edu.guet.controller.UserController">
+		<property name="userService" ref="userService"></property>
+	</bean>
+
+	<bean id="accountController" class="cn.edu.guet.controller.AccountController">
+		<property name="accountService" ref="accountService"></property>
+	</bean>
+
+	<bean id="userService" class="cn.edu.guet.service.Impl.UserServiceImpl">
+		<property name="userDao" ref="userDao"/>
+	</bean>
+	<bean id="userDao" class="cn.edu.guet.dao.Impl.UserDaoImpl"/>
+
+	<bean id="accountService" class="cn.edu.guet.service.Impl.AccountServiceImpl">
+		<property name="accountDao" ref="accountDao"/>
+	</bean>
+	<bean id="accountDao" class="cn.edu.guet.dao.Impl.AccountDaoImpl"/>
+</beans>
