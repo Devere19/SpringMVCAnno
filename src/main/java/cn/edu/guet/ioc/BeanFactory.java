@@ -18,6 +18,7 @@ import java.util.Map;
  * @Version 1.0
  */
 public class BeanFactory {
+
     /**
      * 单例模式，并且定义一个map存放 id和对象
      */

@@ -36,6 +36,7 @@ public class ContextConfigListener implements ServletContextListener {
 
             //把存有@Controller和@RequestMapping的类和方法放入到全局作用域
             sce.getServletContext().setAttribute("cn.guet.web.controller",controllerMapping);
+
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         } catch (UnsupportedEncodingException e) {

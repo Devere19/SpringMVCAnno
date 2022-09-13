@@ -1,5 +1,6 @@
 package cn.edu.guet.mvc;
 
+import cn.edu.guet.ioc.AnnotationBeanFactory;
 import cn.edu.guet.ioc.BeanFactory;
 import com.google.gson.GsonBuilder;
 import lombok.SneakyThrows;
@@ -28,6 +29,7 @@ import java.util.Map;
  */
 @WebServlet(value = "*.do")
 public class DispatcherServlet extends HttpServlet {
+
     Map<String, ControllerMapping> controllerMapping;
 
     /**
@@ -59,6 +61,7 @@ public class DispatcherServlet extends HttpServlet {
         System.out.println("请求地址栏中的url:" + requestURI);
         requestURI = StringUtils.substringBetween(requestURI, request.getContextPath(), ".do");
         System.out.println("去掉前缀和后缀：" + requestURI);
+
         //判断controllerMapping中是否有这个key值，如果有的话把包含这个key值的value取出来
         if (controllerMapping.containsKey(requestURI)) {
             mapping = controllerMapping.get(requestURI);
@@ -86,7 +89,7 @@ public class DispatcherServlet extends HttpServlet {
         String controllerClassName = controllerClass.getSimpleName();
         //使用工具类把第一个字母换成小写
         controllerClassName = StringUtils.replaceChars(controllerClassName, controllerClassName.substring(0, 1), controllerClassName.substring(0, 1).toLowerCase());
-        obj = BeanFactory.getInstance().getBean(controllerClassName);
+        obj = AnnotationBeanFactory.getInstance().getBean(controllerClassName);
 
 
         for (int i = 0; i < parameterType.length; i++) {
